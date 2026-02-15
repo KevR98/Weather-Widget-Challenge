@@ -1,15 +1,18 @@
 // Variabili utili
 const apiKey = 'f23d8bde1c219c5db7e4b8b37a7b6af0';
-const api = 'https://api.openweathermap.org/data/2.5/weather';
+const api = 'https://api.openweathermap.org/data/2.5';
+const apiFirstCard = `${api}/weather?q=Milano&appid=${apiKey}&units=metric`;
+const apiSecondCard = `${api}/forecast?q=Milano&appid=${apiKey}&units=metric`;
 
+// Chiamata per la prima card
 const getWeather = function () {
-  fetch(`${api}?q=Milano&appid=${apiKey}&units=metric&lang=it`)
+  fetch(apiFirstCard)
     .then((res) => {
       console.log('RESPONSE', res);
       if (res.ok) {
         return res.json();
       } else {
-        throw new Error('LA RESPONSE NON È ANDATA A BUON FINE');
+        throw new Error('LA RESPONSE 1 NON È ANDATA A BUON FINE');
       }
     })
     .then((weatherObj) => {
@@ -26,7 +29,7 @@ const getWeather = function () {
       icon.src = `https://openweathermap.org/img/wn/${iconChange}@4x.png`;
 
       // Funzione per cambiare radiente in base al tempo del giorno
-      const card = document.getElementById('card');
+      const card = document.getElementById('first-card');
 
       let gradient = '';
 
@@ -56,8 +59,58 @@ const getWeather = function () {
       card.style.background = gradient;
     })
     .catch((err) => {
-      console.log('ERRORE NELLA CHIAMATA API', err);
+      console.log('ERRORE NELLA CHIAMATA API 1', err);
     });
 };
 
 getWeather();
+
+// Chiamata per la seconda card
+const getForecast = function () {
+  fetch(apiSecondCard)
+    .then((res) => {
+      console.log('RESPONSE', res);
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error('LA RESPONSE 2 NON È ANDATA A BUON FINE');
+      }
+    })
+    .then((forecastObj) => {
+      console.log(forecastObj);
+      const hourContainer = document.querySelectorAll('.hour');
+
+      const hourNeeds = forecastObj.list.slice(0, 5);
+
+      hourNeeds.forEach((data, index) => {
+        const slot = hourContainer[index];
+
+        const date = new Date(data.dt * 1000);
+        let hour = date.getHours();
+        const ampm = hour > 12 ? 'PM' : 'AM';
+        hour = hour % 12 || 12;
+
+        slot.querySelector('.hour-temp').innerText =
+          Math.round(data.main.temp) + '°';
+        slot.querySelector('.hour-icon').src =
+          `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+        slot.querySelector('.hour-time').innerText = hour + ':00';
+        slot.querySelector('.am-pm').innerText = ampm;
+      });
+
+      // Funzione per cambiare il background se è notte
+      const iconChange = hourNeeds[0].weather[0].icon;
+      const card = document.getElementById('second-card');
+
+      if (iconChange.endsWith('n')) {
+        card.style.background =
+          'linear-gradient(135deg, #2c3e50 0%, #000000 100%)';
+        card.style.color = 'white';
+      }
+    })
+    .catch((err) => {
+      console.log('ERRORE NELLA CHIAMATA API 2', err);
+    });
+};
+
+getForecast();
