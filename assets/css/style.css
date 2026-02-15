@@ -10,14 +10,33 @@ body {
 }
 
 .card {
+  background-color: white;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 40px;
+  font-family: 'Inter', sans-serif;
 }
 
-.weather-info {
-  background-color: white;
-  border-radius: 40px;
-  padding: 30px;
-  width: 450px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+.temp {
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0;
+}
+
+.city {
+  font-size: 17px;
+  color: #c7c7ce;
+  margin-top: 10px;
+}
+
+.icon {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
 }
