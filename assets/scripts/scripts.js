@@ -65,7 +65,7 @@ const getWeather = function () {
 
 getWeather();
 
-// Chiamata per la seconda card
+// Chiamata per la seconda e terza card
 const getForecast = function () {
   fetch(apiSecondCard)
     .then((res) => {
@@ -78,6 +78,8 @@ const getForecast = function () {
     })
     .then((forecastObj) => {
       console.log(forecastObj);
+
+      // Logica seconda card
       const hourContainer = document.querySelectorAll('.hour');
 
       const hourNeeds = forecastObj.list.slice(0, 5);
@@ -100,13 +102,42 @@ const getForecast = function () {
 
       // Funzione per cambiare il background se è notte
       const iconChange = hourNeeds[0].weather[0].icon;
-      const card = document.getElementById('second-card');
+      const cards = document.querySelectorAll('#second-card, #third-card');
 
-      if (iconChange.endsWith('n')) {
-        card.style.background =
-          'linear-gradient(135deg, #2c3e50 0%, #000000 100%)';
-        card.style.color = 'white';
-      }
+      cards.forEach((card) => {
+        if (iconChange.endsWith('n')) {
+          card.style.background =
+            'linear-gradient(135deg, #2c3e50 0%, #000000 100%)';
+          card.style.color = 'white';
+        } else {
+          // Reset per il giorno (importantissimo!)
+          card.style.background =
+            'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)';
+        }
+      });
+
+      // Logica terza card
+      const dayContainer = document.querySelectorAll('.day');
+
+      const weeklyNeeds = forecastObj.list
+        .filter((_, index) => index % 8 === 0)
+        .slice(0, 5);
+
+      weeklyNeeds.forEach((data, index) => {
+        const slot = dayContainer[index];
+
+        // Trasformiamo la data in nome del giorno (es. "Lun", "Mar")
+        const date = new Date(data.dt * 1000);
+        const dayName = date.toLocaleDateString('it-IT', { weekday: 'short' });
+
+        if (slot) {
+          slot.querySelector('.day-temp').innerText =
+            Math.round(data.main.temp) + '°';
+          slot.querySelector('.day-icon').src =
+            `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+          slot.querySelector('.day-name').innerText = dayName.replace('.', ''); // Rimuove il punto dall'abbreviazione
+        }
+      });
     })
     .catch((err) => {
       console.log('ERRORE NELLA CHIAMATA API 2', err);
