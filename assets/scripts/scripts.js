@@ -2,7 +2,7 @@
 const apiKey = 'f23d8bde1c219c5db7e4b8b37a7b6af0';
 const api = 'https://api.openweathermap.org/data/2.5';
 const apiFirstCard = `${api}/weather?q=Milano&appid=${apiKey}&units=metric`;
-const apiSecondCard = `${api}/forecast?q=Milano&appid=${apiKey}&units=metric`;
+const apiSecondCard = `${api}/forecast?q=Milan&appid=${apiKey}&units=metric`;
 
 // Chiamata per la prima card
 const getWeather = function () {
@@ -110,7 +110,6 @@ const getForecast = function () {
             'linear-gradient(135deg, #2c3e50 0%, #000000 100%)';
           card.style.color = 'white';
         } else {
-          // Reset per il giorno (importantissimo!)
           card.style.background =
             'linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%)';
         }
@@ -126,7 +125,6 @@ const getForecast = function () {
       weeklyNeeds.forEach((data, index) => {
         const slot = dayContainer[index];
 
-        // Trasformiamo la data in nome del giorno (es. "Lun", "Mar")
         const date = new Date(data.dt * 1000);
         const dayName = date.toLocaleDateString('it-IT', { weekday: 'short' });
 
@@ -135,7 +133,7 @@ const getForecast = function () {
             Math.round(data.main.temp) + '°';
           slot.querySelector('.day-icon').src =
             `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
-          slot.querySelector('.day-name').innerText = dayName.replace('.', ''); // Rimuove il punto dall'abbreviazione
+          slot.querySelector('.day-name').innerText = dayName.replace('.', '');
         }
       });
     })
