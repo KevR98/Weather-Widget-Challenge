@@ -1,8 +1,9 @@
 // Variabili utili
 const apiKey = 'f23d8bde1c219c5db7e4b8b37a7b6af0';
 const api = 'https://api.openweathermap.org/data/2.5';
-const apiFirstCard = `${api}/weather?q=Milano&appid=${apiKey}&units=metric`;
-const apiSecondCard = `${api}/forecast?q=Milan&appid=${apiKey}&units=metric`;
+const city = 'Firenze';
+const apiFirstCard = `${api}/weather?q=${city}&appid=${apiKey}&units=metric`;
+const apiSecondCard = `${api}/forecast?q=${city}&appid=${apiKey}&units=metric`;
 
 // Chiamata per la prima card
 const getWeather = function () {
@@ -143,3 +144,16 @@ const getForecast = function () {
 };
 
 getForecast();
+
+// Logica Slider
+const wrapper = document.getElementById('cards-wrapper');
+const dots = document.querySelectorAll('.dot');
+
+dots.forEach((dot) => {
+  dot.addEventListener('click', () => {
+    const idx = dot.getAttribute('data-index');
+    wrapper.style.transform = `translateX(-${idx * 350}px)`;
+    dots.forEach((d) => d.classList.remove('active'));
+    dot.classList.add('active');
+  });
+});

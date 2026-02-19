@@ -1,94 +1,96 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Widget</title>
+    <title>Weather Widget Slider</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <main class="slide">
-      <div class="main-container">
+    <main class="widget-viewport">
+      <div class="cards-wrapper" id="cards-wrapper">
         <section class="card" id="first-card">
-          <div>
+          <div class="card-content">
             <h1 class="temp" id="temp">--°</h1>
-            <p class="city" id="city">Città, Paese</p>
+            <p class="city" id="city">Caricamento...</p>
           </div>
           <div>
             <img class="icon" id="icon" src="" alt="" />
           </div>
         </section>
+
         <section class="card" id="second-card">
-          <div class="second-container" id="second-container">
-            <div class="hour" id="hour">
-              <span class="hour-temp" id="hour-temp">--</span>
-              <img class="hour-icon" id="hour-icon" src="" alt="" />
-              <p class="hour-time" id="hour-time">--:--</p>
-              <span class="am-pm" id="am-pm">--</span>
+          <div class="second-container">
+            <div class="hour">
+              <span class="hour-temp">--</span>
+              <img class="hour-icon" src="" alt="" />
+              <p class="hour-time">--:--</p>
+              <span class="am-pm">--</span>
             </div>
-            <div class="hour" id="hour">
-              <span class="hour-temp" id="hour-temp">--</span>
-              <img class="hour-icon" id="hour-icon" src="" alt="" />
-              <p class="hour-time" id="hour-time">--:--</p>
-              <span class="am-pm" id="am-pm">--</span>
+            <div class="hour">
+              <span class="hour-temp">--</span>
+              <img class="hour-icon" src="" alt="" />
+              <p class="hour-time">--:--</p>
+              <span class="am-pm">--</span>
             </div>
-            <div class="hour" id="hour">
-              <span class="hour-temp" id="hour-temp">--</span>
-              <img class="hour-icon" id="hour-icon" src="" alt="" />
-              <p class="hour-time" id="hour-time">--:--</p>
-              <span class="am-pm" id="am-pm">--</span>
+            <div class="hour">
+              <span class="hour-temp">--</span>
+              <img class="hour-icon" src="" alt="" />
+              <p class="hour-time">--:--</p>
+              <span class="am-pm">--</span>
             </div>
-            <div class="hour" id="hour">
-              <span class="hour-temp" id="hour-temp">--</span>
-              <img class="hour-icon" id="hour-icon" src="" alt="" />
-              <p class="hour-time" id="hour-time">--:--</p>
-              <span class="am-pm" id="am-pm">--</span>
+            <div class="hour">
+              <span class="hour-temp">--</span>
+              <img class="hour-icon" src="" alt="" />
+              <p class="hour-time">--:--</p>
+              <span class="am-pm">--</span>
             </div>
-            <div class="hour" id="hour">
-              <span class="hour-temp" id="hour-temp">--</span>
-              <img class="hour-icon" id="hour-icon" src="" alt="" />
-              <p class="hour-time" id="hour-time">--:--</p>
-              <span class="am-pm" id="am-pm">--</span>
+            <div class="hour">
+              <span class="hour-temp">--</span>
+              <img class="hour-icon" src="" alt="" />
+              <p class="hour-time">--:--</p>
+              <span class="am-pm">--</span>
             </div>
           </div>
         </section>
 
         <section class="card" id="third-card">
-          <div class="third-container" id="third-container">
+          <div class="third-container">
             <div class="day">
               <span class="day-temp">--°</span>
               <img class="day-icon" src="" alt="" />
-              <p class="day-name">Day</p>
+              <p class="day-name">---</p>
             </div>
             <div class="day">
               <span class="day-temp">--°</span>
               <img class="day-icon" src="" alt="" />
-              <p class="day-name">Day</p>
+              <p class="day-name">---</p>
             </div>
             <div class="day">
               <span class="day-temp">--°</span>
               <img class="day-icon" src="" alt="" />
-              <p class="day-name">Day</p>
+              <p class="day-name">---</p>
             </div>
             <div class="day">
               <span class="day-temp">--°</span>
               <img class="day-icon" src="" alt="" />
-              <p class="day-name">Day</p>
+              <p class="day-name">---</p>
             </div>
             <div class="day">
               <span class="day-temp">--°</span>
               <img class="day-icon" src="" alt="" />
-              <p class="day-name">Day</p>
+              <p class="day-name">---</p>
             </div>
           </div>
         </section>
-        <div class="pagination">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
+      </div>
+      <div class="pagination">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
       </div>
     </main>
+
     <script src="../scripts/scripts.js"></script>
   </body>
 </html>
